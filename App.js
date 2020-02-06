@@ -3,13 +3,18 @@ import { StyleSheet, Text, View, AppL } from 'react-native';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
-import * as Fonts from "expo-font";
+import * as Font from "expo-font";
 import { AppLoading } from 'expo';
 //imp snippit
 import GameOverScreen from './screens/GameOverScreen'
 
 const fetchFonts = () => {
-  return Fonts.loadAsync({
+  // return Font.loadAsync({
+  //   'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+  //   'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  // });
+
+  return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
@@ -24,7 +29,7 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   if (!dataLoaded) {
-    return <AppLoading startAsync={fetchFonts} onFinish={setDataLoaded(true)} onError={(err) => console.log(err)} />;
+    return (<AppLoading startAsync={fetchFonts} onFinish={setDataLoaded(true)} onError={(err) => console.log(err)} />);
   }
 
   const startGameHandler = (selectNumber) => {

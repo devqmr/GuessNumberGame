@@ -1,13 +1,36 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
+import Colors from '../constants/colors';
 
 const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
-            <Text>GameOverScreen</Text>
-            <Text>Number of rounds: {props.roundNumber}</Text>
-            <Text>Number was: {props.userNumber}</Text>
+            <TitleText>The Game is Over!</TitleText>
+            <View style={styles.imageContainer}>
+                <Image
+                    fadeDuration={1000}
+                    style={styles.image}
+                    source={require('../assets/success.png')}
+                    resizeMode='cover' />
+            </View>
+
+            <View style={styles.resultContainer}>
+                <BodyText style={styles.resultText}>
+                    Your phone needed <Text style={styles.highlight}>{props.roundNumber}
+                    </Text> rounds to guess the number <Text style={styles.highlight}>{props.userNumber}
+                    </Text> </BodyText></View>
+
             <Button title="Start New Game" onPress={props.onRestart} />
+
+            <View style={styles.smallImageContainer}>
+                <Image
+                    style={styles.image}
+                    // source={require('../assets/success.png')} 
+                    source={{ uri: 'https://media.istockphoto.com/photos/success-word-on-green-rubber-stamp-picture-id624031640' }}
+                    resizeMode='cover' />
+            </View>
         </View>
     )
 };
@@ -17,6 +40,41 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    imageContainer: {
+        borderRadius: 200,
+        borderColor: 'black',
+        borderWidth: 2,
+        width: 200,
+        height: 200,
+        overflow: 'hidden' //Hide any part of children outside of the view
+    },
+    smallImageContainer: {
+        marginVertical: 30,
+        borderRadius: 200,
+        borderColor: 'black',
+        borderWidth: 2,
+        width: 100,
+        height: 100,
+        overflow: 'hidden' //Hide any part of children outside of the view
+    },
+    image: {
+        width: "100%",
+        height: '100%',
+        borderRadius: 100
+    },
+    highlight: {
+        color: Colors.primary,
+        // fontFamily: 'open-sans-bold'
+    },
+    resultContainer: {
+        marginHorizontal: 40,
+    },
+    resultText: {
+        textAlign: 'center',
+        fontSize: 18,
+        marginVertical: 20,
+
     }
 });
 
