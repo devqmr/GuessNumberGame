@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import NumberContainer from '../components/NumberContainer'
 import Card from '../components/Card'
 
@@ -15,16 +15,52 @@ const genrateRandomBetween = (min, max, exclude) => {
     }
 };
 
+
 const GameScreen = props => {
+
     const [currentGuess, setCurrentGuess] = useState(
         genrateRandomBetween(1, 100, props.userChoices)
     );
+
+    const [rounds, setRounds] = useState(0);
+
+    const currentLow = useRef(1);
+    const currentHigh = useRef(100);
+
+    const { userChoices, onGameOver } = props;
+
+    useEffect(() => {
+        if (currentGuess === userChoices) {
+            onGameOver(rounds);
+        }
+    }, [currentGuess, userChoices, onGameOver]);
+
+    const nextGuessHandler = direction => {
+
+        if ((direction === 'lower' && currentGuess < props.userChoices)
+            || (direction === 'greater' && currentGuess > props.userChoices)) {
+            Alert.alert('Don\'t lie!', 'You know that this wrong...', [{ text: 'Sorry', style: 'cancel' }]);
+            return
+        }
+
+        if (direction === 'lower') {
+            currentHigh.current = currentGuess;
+        } else {
+            currentLow.current = currentGuess;
+        }
+
+        const nextNumber = genrateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
+        setCurrentGuess(nextNumber);
+        setRounds(rounds => rounds + 1);
+    }
+
     return (<View style={styles.screen}>
         <Text>Game Screen</Text>
+        <NumberContainer>user number > {props.userChoices}</NumberContainer>
         <NumberContainer>{currentGuess}</NumberContainer>
         <Card style={styles.buttonContainer}>
-            <Button title="LOWER" onPress={() => { }} />
-            <Button title="GREATER" onPress={() => { }} />
+            <Button title="LOWER" onPress={nextGuessHandler.bind(this, 'lower')} />
+            <Button title="GREATER" onPress={nextGuessHandler.bind(this, 'greater')} />
         </Card>
     </View>)
 };
