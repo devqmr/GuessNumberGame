@@ -5,7 +5,7 @@ import StartGameScreen from './screens/StartGameScreen'
  
 export default function App() {
   return (
-    <View>
+    <View style={styles.screen}>
       <Header title="Guess Number Game" />
       <StartGameScreen/>
     </View>
@@ -13,5 +13,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-
+  screen: {
+    flex: 1
+  }
 });
