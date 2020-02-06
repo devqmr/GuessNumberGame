@@ -4,6 +4,7 @@ import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import DefaultStyles from '../constants/default-styles';
 import MainButton from '../components/MainButton';
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const genrateRandomBetween = (min, max, exclude) => {
@@ -21,11 +22,9 @@ const genrateRandomBetween = (min, max, exclude) => {
 
 const GameScreen = props => {
 
-    const [currentGuess, setCurrentGuess] = useState(
-        genrateRandomBetween(1, 100, props.userChoices)
-    );
-
-    const [rounds, setRounds] = useState(0);
+    const initialGuess =  genrateRandomBetween(1, 100, props.userChoices);
+    const [currentGuess, setCurrentGuess] = useState(initialGuess);
+    const [pastGuesses, setPastGuesses] = useState([initialGuess]);
 
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
@@ -55,6 +54,9 @@ const GameScreen = props => {
         const nextNumber = genrateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
         setRounds(rounds => rounds + 1);
+        //currPastGuess is the old value of pastGuesses
+        setPastGuesses(previousPastGuess => [nextNumber, ...previousPastGuess])
+        
     }
 
     return (<View style={styles.screen}>
@@ -62,8 +64,8 @@ const GameScreen = props => {
         <NumberContainer>user number > {props.userChoices}</NumberContainer>
         <NumberContainer>{currentGuess}</NumberContainer>
         <Card style={styles.buttonContainer}>
-            <MainButton onPress={nextGuessHandler.bind(this, 'lower')} >LOWER</MainButton>
-            <MainButton onPress={nextGuessHandler.bind(this, 'greater')} >GREATER</MainButton>
+            <MainButton onPress={nextGuessHandler.bind(this, 'lower')} > <MaterialIcons name='remove' size={24} /></MainButton>
+            <MainButton onPress={nextGuessHandler.bind(this, 'greater')} ><MaterialIcons name='add' size={24} /></MainButton>
         </Card>
     </View>)
 };
