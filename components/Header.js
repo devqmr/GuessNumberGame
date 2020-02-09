@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import Colors from '../constants/colors'
 
 
@@ -15,13 +15,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 90,
         paddingTop: 36,
-        backgroundColor: Colors.primary,
+        backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottomColor: Platform.OS === 'android' ? 'transparent' : '#ccc',
+        borderBottomWidth: Platform.OS === 'android' ? 0 : 1,
     },
     headerTitle: {
-        color: "black",
         fontSize: 18,
+        color: Platform.OS === 'android' ? 'black' : Colors.primary,
         // fontFamily: 'open-sans-bold'
     }
 });

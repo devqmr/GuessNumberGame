@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Button, Image,Dimensions } from 'react-native';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
 import Colors from '../constants/colors';
@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageContainer: {
-        borderRadius: 200,
+        width: Dimensions.get('window').width * 0.6,
+        height: Dimensions.get('window').width * 0.6,
+        borderRadius: Dimensions.get('window').width * (0.6/2),
         borderColor: 'black',
         borderWidth: 2,
-        width: 200,
-        height: 200,
         overflow: 'hidden' //Hide any part of children outside of the view
     },
     smallImageContainer: {
