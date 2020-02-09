@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image,Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, Image,Dimensions, ScrollView } from 'react-native';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
 import Colors from '../constants/colors';
@@ -7,7 +7,8 @@ import MainButton from '../components/MainButton';
 
 const GameOverScreen = props => {
     return (
-        <View style={styles.screen}>
+        <ScrollView>
+            <View style={styles.screen}>
             <TitleText>The Game is Over!</TitleText>
             <View style={styles.imageContainer}>
                 <Image
@@ -33,6 +34,7 @@ const GameOverScreen = props => {
                     resizeMode='cover' />
             </View>
         </View>
+        </ScrollView>
     )
 };
 

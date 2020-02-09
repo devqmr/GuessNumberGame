@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, AppL } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -54,10 +54,10 @@ export default function App() {
     content = <GameOverScreen roundNumber={guessRound} userNumber={userNumber} onRestart={configureNewGame} />
   }
   return (
-    <View style={styles.screen}>
-      <Header title="Guess Number Game" />
-      {content}
-    </View>
+    <SafeAreaView style={styles.screen} >
+        <Header title="Guess Number Game" />
+        {content}
+    </SafeAreaView>
   );
 }
 
