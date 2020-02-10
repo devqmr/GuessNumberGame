@@ -6,7 +6,7 @@ export default StyleSheet.create({
         color: 'red'
     },
     title: {
-        // fontFamily: 'open-sans-bold',
+        fontFamily: 'open-sans-bold',
         fontSize: 18
     }
 });

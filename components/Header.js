@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 18,
         color: Platform.OS === 'android' ? 'black' : Colors.primary,
-        // fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold'
     }
 });
 

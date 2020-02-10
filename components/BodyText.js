@@ -5,8 +5,7 @@ const BodyText = props =><Text style={{...styles.body, ...props.style}}>{props.c
 
 const styles = StyleSheet.create({
     body: {
-        // fontFamily: 'open-sans-bold'
-        // fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold'
     }
 });
 

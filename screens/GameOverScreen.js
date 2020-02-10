@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     highlight: {
         color: Colors.primary,
-        // fontFamily: 'open-sans-bold'
+        fontFamily: 'open-sans-bold'
     },
     resultContainer: {
         marginHorizontal: 40,
